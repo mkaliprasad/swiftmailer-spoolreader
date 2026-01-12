@@ -1,5 +1,5 @@
 # Stage 1: Builder
-FROM debian:buster-slim as builder
+FROM debian:bookworm-slim as builder
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /app
@@ -9,7 +9,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apt-get update && apt-get install -y curl gnupg tzdata unzip git
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash \
     && apt-get install -y nodejs php php-fpm php-zip nginx
 
 COPY . .
