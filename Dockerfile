@@ -1,5 +1,5 @@
 # Stage 1: Builder
-FROM debian:bookworm-slim as builder
+FROM debian:bookworm-slim AS builder
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer update && composer install
 
 # Stage 2: Final Image
-FROM php:7.4-apache
+FROM php:7.4-apache-bullseye
 
 COPY --from=builder /app/config /var/www/config
 COPY --from=builder /app/web /var/www/html/
